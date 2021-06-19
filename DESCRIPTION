@@ -1,6 +1,6 @@
-Package: Processand Datahub R Package
+Package: r_idh
 Type: Package
-Title: An example R package
+Title: Processand Datahub R Package
 Version: 0.2.0
 Date: 2020-10-07
 Authors@R: person("Alexander", "Mischi", email = "a.mischi@processand.com",
