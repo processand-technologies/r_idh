@@ -1,8 +1,3 @@
-library(httr)
-library("rjson")
-library("here")
-library(uuid)
-
 #' send web request to JAVA Server to start run sql statement
 #'
 #' @param query: Sql statement string (only one statement allowed at once e.g. in HANA database)
@@ -27,10 +22,10 @@ execute <- function(
     limit = NULL,
     connection_data = NULL) {
 
-    require(httr)
-    require("rjson")
-    require("here")
-    require(uuid)
+    library(httr)
+    library("rjson")
+    library("here")
+    library(uuid)
 
     config <- read_yaml(file.path(here(), "config.yaml"))
 
