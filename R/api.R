@@ -1,6 +1,5 @@
 library(httr)
 library("rjson")
-library("yaml")
 library("here")
 library(uuid)
 
@@ -27,6 +26,11 @@ execute <- function(
     port = NULL,
     limit = NULL,
     connection_data = NULL) {
+
+    require(httr)
+    require("rjson")
+    require("here")
+    require(uuid)
 
     config <- read_yaml(file.path(here(), "config.yaml"))
 
