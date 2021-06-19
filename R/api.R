@@ -22,10 +22,10 @@ execute <- function(
     limit = NULL,
     connection_data = NULL) {
 
-    library(httr)
-    library("rjson")
-    library("here")
-    library(uuid)
+    require(httr)
+    require("rjson")
+    require("here")
+    require(uuid)
 
     config <- read_yaml(file.path(here(), "config.yaml"))
 
