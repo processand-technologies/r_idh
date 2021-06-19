@@ -1,0 +1,16 @@
+Package: Processand Datahub R Package
+Type: Package
+Title: An example R package
+Version: 0.2.0
+Date: 2020-10-07
+Authors@R: person("Alexander", "Mischi", email = "a.mischi@processand.com",
+                  role = c("aut", "cre"))
+Description: This Package is used to push data to / pull data via Datahub jdbc connections.
+URL: https://github.com/processand-technologies/r_idh
+License: Process&
+Depends: R (>= 3.1)
+Encoding: UTF-8
+Imports:
+    stringr
+    here
+    data.table
