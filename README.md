@@ -1,4 +1,4 @@
-# py_idh
+# r_idh
 
 You can either
 1. pip install from git repo
@@ -35,5 +35,8 @@ mssql =  {
 token = "..."
 PythonJdbc.execute("SELECT TOP 3* FROM dbo.BSEG", connection_data = mssql, jdbc_token = token)
 ```
+
+
+install.packages("devtools", dependencies = TRUE)
 
 library(exampleRPackage)
