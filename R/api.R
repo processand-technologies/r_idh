@@ -24,7 +24,6 @@ execute <- function(
 
     library(httr)
     library("rjson")
-    library("here")
     library(uuid)
 
     task_data <- list(
@@ -75,7 +74,6 @@ execute_batch <- function(
     
     library(httr)
     library("rjson")
-    library("here")
     library(uuid)
 
     task_data <- list(
