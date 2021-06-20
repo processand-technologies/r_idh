@@ -28,7 +28,7 @@ execute <- function(
     library(uuid)
     library("yaml")
 
-    config <- read_yaml(paste(system.file(package="rIdh"), "config.yaml", sep=""))
+    config <- read_yaml(file.path(system.file(package="rIdh"), "config.yaml"))
 
     task_data <- list(
         taskId = UUIDgenerate(),
@@ -80,7 +80,7 @@ execute_batch <- function(
     library(uuid)
     library("yaml")
 
-    config <- read_yaml(file.path(here(), "config.yaml"))
+    config <- read_yaml(file.path(system.file(package="rIdh"), "config.yaml"))
 
     task_data <- list(
         taskId = UUIDgenerate(),
