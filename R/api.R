@@ -43,7 +43,9 @@ execute <- function(
     headers <- list(authorization = token, "Content-type" = "application/json")
     url <- paste("http://", host, ":", port, "/api/external/run-sql-statement", sep="")
     response <- POST(url, body = list(taskData = task_data, connectionId = connection_id), add_headers(authorization = token, "Content-type" = "application/json"), encode = "json",verbose(), timeout(36000))
-    return(content(response)$data)
+    result <- content(response)
+    if ("error" %in% names(result)) stop(result$error)
+    return(result$data)
     }
 
 #' send web request to JAVA Server to start run sql statement
@@ -92,5 +94,7 @@ execute_batch <- function(
     headers <- list(authorization = token, "Content-type" = "application/json")
     url <- paste("http://", host, ":", port, "/api/external/run-sql-statement", sep="")
     response <- POST(url, body = list(taskData = task_data, connectionId = connection_id), add_headers(authorization = token, "Content-type" = "application/json"), encode = "json",verbose(), timeout(36000))
-    return(content(response)$data)
+    result <- content(response)
+    if ("error" %in% names(result)) stop(result$error)
+    return(result$data)
     }
