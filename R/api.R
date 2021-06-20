@@ -26,9 +26,6 @@ execute <- function(
     library("rjson")
     library("here")
     library(uuid)
-    library("yaml")
-
-    config <- read_yaml(file.path(system.file(package="rIdh"), "R", "config.yaml"))
 
     task_data <- list(
         taskId = UUIDgenerate(),
@@ -39,8 +36,8 @@ execute <- function(
         )
 
     if (!is.null(connection_data)) task_data$connectionData <- connection_data
-    if (is.null(port)) port <- config$nodePort
-    if (is.null(host)) host <- config$host 
+    if (is.null(port)) port <- 3001
+    if (is.null(host)) host <- 'datahub'
     if (!is.null(limit)) task_data$params$limit <- limit
     
     headers <- list(authorization = token, "Content-type" = "application/json")
@@ -78,9 +75,6 @@ execute_batch <- function(
     library("rjson")
     library("here")
     library(uuid)
-    library("yaml")
-
-    config <- read_yaml(file.path(system.file(package="rIdh"), "R", "config.yaml"))
 
     task_data <- list(
         taskId = UUIDgenerate(),
@@ -92,8 +86,8 @@ execute_batch <- function(
         )
 
     if (!is.null(connection_data)) task_data$connectionData <- connection_data
-    if (is.null(port)) port <- config$nodePort
-    if (is.null(host)) host <- config$host 
+    if (is.null(port)) port <- 3001
+    if (is.null(host)) host <- 'datahub'
     
     headers <- list(authorization = token, "Content-type" = "application/json")
     url <- paste("http://", host, ":", port, "/api/external/run-sql-statement", sep="")
