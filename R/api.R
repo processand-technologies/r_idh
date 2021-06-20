@@ -1,9 +1,3 @@
-library(httr)
-library("rjson")
-library("here")
-library(uuid)
-library("yaml")
-
 #' send web request to JAVA Server to start run sql statement
 #'
 #' @param query: Sql statement string (only one statement allowed at once e.g. in HANA database)
@@ -34,7 +28,7 @@ execute <- function(
     library(uuid)
     library("yaml")
 
-    config <- read_yaml(file.path(here(), "config.yaml"))
+    config <- read_yaml(paste(system.file(package="rIdh"), "config.yaml", sep=""))
 
     task_data <- list(
         taskId = UUIDgenerate(),
@@ -79,6 +73,13 @@ execute_batch <- function(
     port = NULL,
     limit = NULL,
     connection_data = NULL) {
+    
+    library(httr)
+    library("rjson")
+    library("here")
+    library(uuid)
+    library("yaml")
+
     config <- read_yaml(file.path(here(), "config.yaml"))
 
     task_data <- list(
