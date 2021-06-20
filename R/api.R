@@ -2,6 +2,7 @@ library(httr)
 library("rjson")
 library("here")
 library(uuid)
+library("yaml")
 
 #' send web request to JAVA Server to start run sql statement
 #'
@@ -27,9 +28,6 @@ execute <- function(
     limit = NULL,
     connection_data = NULL) {
 
-    rjson::read_yaml()
-    here::here()
-    
     config <- read_yaml(file.path(here(), "config.yaml"))
 
     task_data <- list(
