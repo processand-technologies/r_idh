@@ -28,6 +28,12 @@ execute <- function(
     limit = NULL,
     connection_data = NULL) {
 
+    library(httr)
+    library("rjson")
+    library("here")
+    library(uuid)
+    library("yaml")
+
     config <- read_yaml(file.path(here(), "config.yaml"))
 
     task_data <- list(
