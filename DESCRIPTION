@@ -11,5 +11,4 @@ License: Process&
 Depends: R (>= 3.1)
 Encoding: UTF-8
 Imports:
-    rjson,
-    uuid
+    rjson
