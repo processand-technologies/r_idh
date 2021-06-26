@@ -96,3 +96,6 @@ execute_batch <- function(
     if ("error" %in% names(result)) stop(result$error)
     return(result$data)
     }
+
+user_token <- 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeXNhZG1pbiIsImlhdCI6bnVsbCwiZXhwIjpudWxsLCJ1dWlkIjoiYjg1ZTMzYTUtMjlmNi00OWQzLTk4ZjgtOGUyYjJlM2VkMjQzIn0.eEwlCnz17xl-iqKHsRsTj-_fsg0HTkig-gLyQFw1MH4'
+print(execute("SELECT TOP 1* FROM BSEG", "76993b8c-2b79-4778-9a60-c00532101293", user_token, '127.0.0.1'))
