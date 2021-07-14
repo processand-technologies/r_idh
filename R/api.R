@@ -44,8 +44,31 @@ execute <- function(
     response <- POST(url, body = list(taskData = task_data, connectionId = connection_id), add_headers(authorization = token, "Content-type" = "application/json"), encode = "json",verbose(), timeout(36000))
     result <- content(response)
     if ("error" %in% names(result)) stop(result$error)
-    return(result$data)
-    }
+    df = data.frame()
+    tryCatch(
+        expression = {
+            if (length(result$data$rows) == 0) {
+                df <- read.table(text = "",
+                    colClasses = rep("character", length(result$data$columns)),
+                    col.names = result$data$columns)
+            } else {
+                df <- data.frame(t(sapply(result$data$rows, c)))
+                col_counter <- 1
+                for (col in result$data$columns) {
+                    names(df)[col_counter] <- col
+                    col_counter <- col_counter + 1
+                }
+            }
+            return(df)
+        },
+        error = function(cond) {
+            print(cond)
+        },
+        finally = {
+            return(df)
+        }
+    )
+}
 
 #' send web request to JAVA Server to start run sql statement
 #'
@@ -61,7 +84,9 @@ execute <- function(
 #' @examples
 #'   from py_idh.database import PythonJdbc
 #'   user_token = "..."
-#'   PythonJdbc.execute("SELECT TOP 3* FROM dbo.BSEG", connection_id = ..., token = user_token)
+#'   # params may be list of unnamed lists or dataframe with right amount of columns
+#'   params <- list(list(1, 'ahoi', 1.345), list(2, 'ahoi', 1.345)) 
+#'   data <- execute_batch("INSERT INTO test_batch VALUES (?, ?, ?)", params, connection_id = ..., token = user_token)
 execute_batch <- function(
     query,
     params,
@@ -75,6 +100,17 @@ execute_batch <- function(
     library(httr)
     library("rjson")
     library(uuid)
+
+    if (is.data.frame(params)) {
+        params <- do.call(function(...) Map(list, ...), params)
+        rows <- list()
+        row_counter <- 1
+        for (row in params) {
+            rows[[row_counter]] <- unname(row)
+            row_counter <- row_counter + 1
+        }
+        params <- rows
+    }
 
     task_data <- list(
         taskId = UUIDgenerate(),
