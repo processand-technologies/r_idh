@@ -152,7 +152,6 @@ execute_batch <- function(
 #'   user_token <- "..."  
 #'   execute_script(script_id = ..., section_ids = list(id1, id2), connection_id = ..., token = user_token)
 execute_script <- function(
-    query,
     script_id = NULL,
     section_ids = NULL,
     target_branch = 'master',
