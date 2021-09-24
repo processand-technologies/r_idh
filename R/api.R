@@ -172,8 +172,7 @@ execute_script <- function(
         returnDirectly = TRUE,
         params = list(
             scriptId = script_id,
-            targetBranch = target_branch,
-            query = query)
+            targetBranch = target_branch)
         )
 
     if (!is.null(connection_data)) task_data$connectionData <- connection_data
