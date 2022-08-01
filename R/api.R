@@ -61,7 +61,7 @@ execute <- function(
         )
 
     if (!is.null(connection_data)) task_data$connectionData <- connection_data
-    if (is.null(port)) port <- 3001
+    if (is.null(port)) port <- 3011
     if (is.null(host)) host <- 'datahub'
     if (!is.null(limit)) task_data$params$limit <- limit
     
@@ -124,7 +124,7 @@ execute_batch <- function(
         )
 
     if (!is.null(connection_data)) task_data$connectionData <- connection_data
-    if (is.null(port)) port <- 3001
+    if (is.null(port)) port <- 3011
     if (is.null(host)) host <- 'datahub'
     
     headers <- list(authorization = token, "Content-type" = "application/json")
@@ -176,7 +176,7 @@ execute_script <- function(
         )
 
     if (!is.null(connection_data)) task_data$connectionData <- connection_data
-    if (is.null(port)) port <- 3001
+    if (is.null(port)) port <- 3011
     if (is.null(host)) host <- 'datahub'
     if (!is.null(limit)) task_data$params$limit <- limit
     if (!is.null(section_ids)) task_data$params$sectionIds <- section_ids
